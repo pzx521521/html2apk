@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector n1:height="108.0dip" n1:width="108.0dip" n1:viewportWidth="108.0" n1:viewportHeight="108.0"
+  xmlns:n1="http://schemas.android.com/apk/res/android">
+    <path n1:fillColor="#ff26a69a" n1:pathData="M0,0h108v108h-108z" />
+    <path n1:fillColor="#00000000" n1:pathData="M9,0L9,108" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M19,0L19,108" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M29,0L29,108" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M39,0L39,108" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M49,0L49,108" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M59,0L59,108" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M69,0L69,108" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M79,0L79,108" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M89,0L89,108" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M99,0L99,108" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M0,9L108,9" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M0,19L108,19" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M0,29L108,29" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M0,39L108,39" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M0,49L108,49" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M0,59L108,59" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M0,69L108,69" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M0,79L108,79" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M0,89L108,89" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M0,99L108,99" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M19,29L89,29" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M19,39L89,39" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M19,49L89,49" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M19,59L89,59" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M19,69L89,69" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M19,79L89,79" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M29,19L29,89" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M39,19L39,89" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M49,19L49,89" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M59,19L59,89" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M69,19L69,89" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+    <path n1:fillColor="#00000000" n1:pathData="M79,19L79,89" n1:strokeColor="#33ffffff" n1:strokeWidth="0.8" />
+</vector>

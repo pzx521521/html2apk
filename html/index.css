@@ -1,0 +1,33 @@
+#app {
+    padding: 2% 5% 0% 5%
+}
+.right{
+	float: right;
+}
+input {
+    text-align: start
+}
+.disable input{
+	disabled: disabled
+}
+.w80 {
+    width: 80%
+}
+
+.center {
+    text-align: center
+}
+
+.pure-g {
+    padding: 2px 0 2px 0
+}
+
+p {
+    cursor: pointer
+}
+
+img {
+    height: 100px;
+    padding: 10px 10px 10px 10px;
+    margin-left: 20%;
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" crossorigin="anonymous">
+</head>
+<link rel="stylesheet" href="index.css" crossorigin="anonymous">
+</head>
+</head>
+<body>
+<div  id="app" class="pure-form" action="http://localhost/test" method="POST" enctype="multipart/form-data">	
+    <div class="pure-g">
+        <div class="pure-u-1-4"><p>Website type to Convert</p></div>
+        <div class="pure-u-3-4">
+            <p><input type="radio" name="bLocal" value="true" v-model="bLocal">Local Html Website</input></p>
+            <p>
+                <input type="radio" name="bLocal" value="false" v-model="bLocal">Web Url</input>
+                <input type="text" v-model="url" v-if="bLocal == 'false'"/>
+            </p>
+        </div>
+    </div>
+    <div class="pure-g">
+        <div class="pure-u-1-4">App Title</div>
+        <div class="pure-u-3-4"><input class="pure-input-3-4" type="text" v-model="appTitle"/></div>
+    </div>
+    <div class="pure-g">
+        <div class="pure-u-1-4">Package Name</div>
+        <div class="pure-u-3-4">
+            <input type="text" class="pure-input-1-4" v-model="packageName[0]" v-bind:disabled="0"/>.
+            <input type="text" class="pure-input-1-4" v-model="packageName[1]" v-bind:disabled="0"/>.
+            <input type="text" class="pure-input-1-4" v-model="packageName[2]" v-bind:disabled="0"/>
+        </div>
+    </div>
+    <div class="pure-g disable">
+        <div class="pure-u-1-4">Version</div>
+        <div class="pure-u-3-4"><input type="text" v-model="version" v-bind:disabled="0"/></div>
+    </div>
+    <div class="pure-g">
+        <div class="pure-u-1-4">ICO</div>
+        <div class="pure-u-3-4"><input type="file" v-on:change="loadImg"/></div>
+    </div>
+    <div class="pure-g">
+        <img id="imgShow" v-bind:src="imgSrc"/>
+    </div>
+    <div v-if="bLocal == 'true'">
+        <div class="pure-g">
+            <div class="pure-u-1-4"><p>Load Html Type</p></div>
+            <div class="pure-u-3-4">
+                <p><input type="radio" name="bDir" value="false" v-model="bDir"/>You can upload index.html or zip-file
+                </p>
+                <p><input type="radio" name="bDir" value="true" v-model="bDir"/>You can upload a directory(Only webkit
+                    suport)</p>
+            </div>
+        </div>
+        <div class="pure-g">
+            <div v-if="bDir == 'false'">
+                <div class="pure-u-1-4">Zip/Index.html of html</div>
+                <div class="pure-u-3-4">
+                    <input type="file" v-on:change="loadFile"/>
+                </div>
+            </div>
+            <div v-if="bDir == 'true'">
+                <div class="pure-u-1-4">Select a Dir</div>
+                <div class="pure-u-3-4">
+                    <input type='file' webkitdirectory v-on:change="loadDir">
+                </div>
+            </div>
+        </div>
+    </div>
+		<div class="pure-g" v-if="!bDownLoad">
+			<div class="pure-u-3-4"></div>
+			<div class="pure-u-1-4"><button v-bind:disabled="isRunning" class="pure-button right" v-on:click="buildApk">{{tip}}</button></div>		
+		</div>		
+		<div class="pure-g" v-if="bDownLoad">
+			<div class="pure-u-3-4"></div>
+			<div class="pure-u-1-4"><button class="pure-button right" v-on:click="getApk">点我下载</button></div>		
+		</div>			
+</div>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jszip/3.3.0/jszip.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+		String.prototype.bool = function() {
+				return (/^true$/i).test(this);
+		};
+    var app = new Vue({
+        el: '#app',
+        data: {
+            bLocal: 'true',
+						bZip: false,
+            bDir: 'false',
+            appTitle: 'webViewDemo',
+            packageName: ['para', 'webview', 'demo'],
+            version: '1.0',
+            imgSrc: 'timg.jpg',
+						imgData: '',
+            zipData: {},
+						url:'',
+            htmlData: '',
+            fd: {},
+						tip:'生成apk',
+						isRunning: false,
+						timer:{},
+						iclock: 0,
+						bDownLoad: false
+        },
+        methods: {
+            loadImg: function (evt) {
+                var files = evt.target.files;
+                for (var i = 0, f; f = files[i]; i++) {
+                    app.imgData = f;
+										var reader = new FileReader();  
+										reader.readAsDataURL(f); //base64编码  
+									  reader.onload = function(){  
+												 this.imgSrc = reader.result;  
+										}		 
+                }
+            },
+            loadFile: function (evt) {
+                var files = evt.target.files;
+                for (var i = 0, f; f = files[i]; i++) {
+                    if (f.type.match('.*zip')) {
+											// zip 元素
+											app.zipData = f;
+											app.bZip = true;  
+                    } else if (f.type.match('.*html')) {
+										  app.htmlData = f;
+                    }
+                }
+            },
+            loadDir: function (evt) {
+                this.files = evt.target.files;
+            },               
+						vertify: function (bLocal, bDir) {
+							var fd = new FormData()
+							var sType = ''
+							if(bLocal & this.bZip){
+								if(this.zipData == ''){
+									alert('请选择zip文件!')
+									return null
+								}												
+								fd.append("zip" ,this.zipData)
+								sType = 'zip'
+							}	else if(bLocal & (!this.bZip)& (!bDir)){
+								if(this.htmlData == ''){
+									alert('请选择Html文件!')
+									return null
+								}								
+								fd.append("html" ,this.htmlData)
+								sType = 'html'
+							}
+							else if(bLocal & bDir){
+								if(this.files.length = 0){
+									alert('请选择文件夹!')
+									return null
+								}
+								for (var i = 0; i < this.files.length; i++) {
+										fd.append("file", this.files[i]);
+								}
+								sType = 'dir'
+							}else if(!bLocal){
+								if(this.url == ''){
+									alert('请输入网址!')
+									return null
+								}
+								if(this.url.substr(0,3) == "www") {
+									this.url = "http://" + this.url
+								}
+								if(this.url.search(/^((https|http){1}(:\/\/){0,1})www\.(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/) < 0){
+									alert('输入正确的网址!')
+									return null
+								}
+								fd.append("url", this.url);
+								sType = 'url'
+							}else{
+								return null
+							}								
+							fd.append("type" ,sType)	
+							return fd
+						},	
+						clock:function (){
+							this.tip = '服务器正在运行...耗时' + this.iclock + 's'
+							this.iclock++
+						},
+						startTime:function (){
+							this.iclock = 0							
+							this.isRunning = true
+							this.timer = setInterval(this.clock,1000)
+						},
+						endTime:function (){
+							this.iclock = 0							
+							this.isRunning = false							
+							this.timer = window.clearInterval(this.timer)
+							this.tip = '点击下面按钮下载'
+							this.bDownLoad = true
+						},						
+						buildApk: function (evt) {							
+							var bLocal = this.bLocal.bool()
+							var bDir = this.bDir.bool()
+							var fd = this.vertify(bLocal, bDir)
+							if(fd == null) return
+							fd.append("appTitle" ,this.appTitle)
+							fd.append("packageName" ,this.packageName.join('.'))
+							fd.append("version" ,this.version)
+							fd.append("imgSrc" ,this.imgData)						
+							this.startTime();
+							axios.post('http://localhost/getApk', fd)
+								.then(function (response) {
+									console.log(response);
+									app.endTime();
+								})
+								.catch(function (error) {
+									console.log(error);
+									app.endTime();
+								});							
+            },
+						getApk: function () {	
+							window.location.href="http://localhost/download" 
+						}	
+						
+        }
+    })
+</script>
+</html>
