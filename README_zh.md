@@ -19,7 +19,7 @@ java 1.8+
 [^1]: 1 apktool.jar 由于 org.yaml.snakeyaml 和springboot 下的版本冲突(springboot 下是1.25 apktool 下是 1.12) 必须自己编译 详见 [如何编译apktool.jar](HowtoBuildApkToolJar.md)
 
 #### todo
-+ 仅在windows 平台测试过
++ ~~仅在windows 平台测试过~~
 + 多用户同时使用的支持
 + UI 调整
 + 支持包名的修改
