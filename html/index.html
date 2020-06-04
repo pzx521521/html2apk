@@ -169,10 +169,10 @@
 								if(this.url.substr(0,3) == "www") {
 									this.url = "http://" + this.url
 								}
-								if(this.url.search(/^((https|http){1}(:\/\/){0,1})www\.(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/) < 0){
-									alert('输入正确的网址!')
-									return null
-								}
+								//if(this.url.search(/^((https|http){1}(:\/\/){0,1})www\.(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/) < 0){
+								//	alert('输入正确的网址!')
+								//	return null
+								//}
 								fd.append("url", this.url);
 								sType = 'url'
 							}else{
